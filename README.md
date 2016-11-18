@@ -1,2 +1,2 @@
-# insblockers
+# Ins.Blockers
 Insuretech Hackathon
