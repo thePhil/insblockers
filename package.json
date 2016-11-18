@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/thePhil/insblockers/issues"
   },
-  "homepage": "https://github.com/thePhil/insblockers#readme"
+  "homepage": "https://github.com/thePhil/insblockers#readme",
+  "devDependencies": {
+    "solc": "^0.4.4"
+  }
 }
