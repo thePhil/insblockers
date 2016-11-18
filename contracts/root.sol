@@ -1,9 +1,11 @@
+pragma solidity ^0.4.4;
+
 contract root{
 
 
 
-	function getHello() constant returns (string){
-		return "Hello World";
+	function getHello() constant returns (uint a){
+		return 3;
 	}
 }
 
