@@ -1,0 +1,19 @@
+{
+  "name": "insblockers",
+  "version": "1.0.0",
+  "description": "Insurtech Hackathon",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thePhil/insblockers.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thePhil/insblockers/issues"
+  },
+  "homepage": "https://github.com/thePhil/insblockers#readme"
+}
