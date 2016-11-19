@@ -9,6 +9,11 @@
 
 <form (ngSubmit)="onSubmit(f)" #f="ngForm">
 
+
+  <select name="retailerName" ngModel id="">
+    <option *ngFor="let item of retailers;" [ngValue]="item">{{item}}</option>
+  </select>
+
   <md-input ngModel name="retailerName" placeholder="Retailer Name SHOULD BE LIST FROM CHAIN"></md-input>
   <md-input ngModel name="primaryContact" placeholder="Retailer primary contract"></md-input>
   <md-input ngModel name="duration" placeholder="Duration of the agreement"></md-input>

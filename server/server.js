@@ -15,7 +15,7 @@ function Server() {
     {path: '/insurer/register', action: function (req, res) {
       Root.registerInsurer(function () {
 
-        res.respond(JSON.stringify(true));
+        res.send(JSON.stringify({message:"You have successfully registered as an insurer please check your mail for more details."}));
 
       })
     }},
@@ -23,6 +23,13 @@ function Server() {
       Root.registerRetailer(function () {
         res.respond(JSON.stringify(true));
       })
+    }},
+    {path: '/getRetailers', action: function (req, res) {
+
+      console.log('registerAgreement', req.body);
+
+    //  todo add get retailers function from phil here
+
     }},
     {path: '/insurer/registerAgreement', action: function (req, res) {
 
