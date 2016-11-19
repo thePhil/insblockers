@@ -52,21 +52,6 @@ function Server() {
       })
     }
     },
-    {
-      path:'/insurer/registerAgreement',
-      action:function (req, res) {
-
-        Root.createRetailerAgreement(req.params.address, function (result) {
-
-            var agree = new RetailerAgreement(result);
-            agree.setProperties(req.body.retailerName, req.params.address, req.body.commision, req.body.rates, function (resulr) {
-              res.send(JSON.stringify({data:true}))
-            });
-
-            res.send()
-        })
-      }
-    }
   ];
 
   // setup cors
@@ -74,6 +59,19 @@ function Server() {
 
   routes.forEach(function (item, index) {
     app.get(item.path, item.action);
+  });
+
+  app.post('/insurer/registerAgreement', function (req, res) {
+
+    Root.createRetailerAgreement(req.params.address, function (result) {
+
+      var agree = new RetailerAgreement(result);
+      agree.setProperties(req.body.retailerName, req.params.address, req.body.commision, req.body.rates, function (resulr) {
+        res.send(JSON.stringify({data: true}))
+      });
+
+      res.send()
+    })
   });
 
   app.listen(1111, function () {
