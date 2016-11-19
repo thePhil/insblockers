@@ -26,6 +26,7 @@ export class InsurerComponent implements OnInit {
 
   ngOnInit() {
     this.retailers = this.insurerService.getRetailers().then(result => this.retailers = result);
+    console.log(this.retailers);
   }
 
 }

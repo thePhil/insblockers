@@ -10,7 +10,7 @@
 <form (ngSubmit)="onSubmit(f)" *ngIf="retailers" #f="ngForm">
 
 
-  <div *ngFor="let item of retailers;">{{item}}</div>
+  <div>{{retailers}}</div>
 
   <select name="retailerName" ngModel id="">
     <option *ngFor="let item of retailers;" [ngValue]="item">{{item}}</option>
