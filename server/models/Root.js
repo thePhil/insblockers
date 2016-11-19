@@ -1,7 +1,7 @@
 var fs = require ('fs');
 var erisC = require('eris-contracts');
-
-var erisdbURL = "http://localhost:1337/rpc";
+var path = require('path');
+var erisdbURL = require('../../package.json').insblockersConf.erisDbUrl;
 
 var contractData = require('../../jobs_output.json');
 
@@ -13,7 +13,7 @@ var ctrAddress = contractData[moduleName];
 
 console.log(ctrAddress)
 
-var ctrABI = JSON.parse(fs.readFileSync("../../abi/" + ctrAddress));
+var ctrABI = JSON.parse(fs.readFileSync(path.join(__dirname,"../../abi/" + ctrAddress)));
 
 var accountData = require("../../accounts.json");
 var ctrManager = erisC.newContractManagerDev(erisdbURL, accountData.simplechain_full_000);
@@ -51,4 +51,11 @@ function registerServiceAgent(callback){
 		console.log("Registered Service Agent.");
 		callback();
 	});
+}
+
+module.exports = {
+  registerInsurer:registerInsurer,
+  registerServiceAgent:registerServiceAgent,
+  registerRetailer:registerRetailer,
+
 }
