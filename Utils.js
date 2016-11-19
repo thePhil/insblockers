@@ -1,4 +1,8 @@
-module.export = Utils;
+module.export = {
+  stringToBytes32: Utils.stringToBytes32,
+  stringFromBytes32: Utils.stringFromBytes32,
+
+};
 function Utils() {
 }
 
