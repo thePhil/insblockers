@@ -5,3 +5,22 @@ jobs:
     deploy:
       contract: root.sol
       wait: true
+
+- name: Root 
+  job:
+    deploy:
+      contract: Root.sol
+      wait: true
+
+
+- name: RetailerAgreement
+  job:
+    deploy:
+      contract: RetailerAgreement.sol
+      wait: true
+
+- name: ServiceAgreeement
+  job:
+    deploy:
+      contract: ServiceAgreeement.sol
+      wait: true

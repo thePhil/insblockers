@@ -1,6 +1,8 @@
 #!/bin/bash
 pwd=`pwd`
 
+rm -rf ~/.eris/apps/*
+
 cp -R contracts/ ~/.eris/apps/
 cp epm.yaml ~/.eris/apps/
 

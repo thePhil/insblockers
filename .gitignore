@@ -3,6 +3,7 @@
 # compiled output
 /dist
 /tmp
+/abi
 
 # dependencies
 /node_modules

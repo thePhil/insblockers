@@ -1,5 +1,3 @@
-pragma solidity ^0.4.4;
-
 contract RetailerAgreement {
     address _insurer = msg.sender;
     address _retailer;
