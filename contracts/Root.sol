@@ -5,12 +5,10 @@ import "ServiceAgreement.sol";
 contract Root {
     address _insurer;
     mapping(address => bool) _retailers;
-    mapping(uint => address) _retailersIndex;
-    uint _retailersCount;
+    address[] _retailersArray;
 
     mapping(address => bool) _serviceAgents;
-    mapping(uint => address) _serviceAgentsIndex;
-    uint _serviceAgentsCount;
+    address[] _serviceAgentsArray;
 
     ExtendedWarrenty[] _extendedWarrenties;
     RetailerAgreement[] _retailerAgreements;
@@ -34,30 +32,20 @@ contract Root {
 
     function registerRetailer() {
         _retailers[msg.sender] = true;
-        _retailersIndex[_retailersCount] = msg.sender;
-        _retailersCount++;
+        _retailersArray.push(msg.sender);
     }
 
-    function getRetailerNumber() constant return (uint) {
-        return _retailersCount;
-    }
-
-    function getRetailer(uint index) constant return (address) {
-        return _retailersIndex[index];
+    function getRetailers() constant returns (address[]) {
+        return _retailersArray;
     }
 
     function registerServiceAgent() {
         _serviceAgents[msg.sender] = true;
-        _serviceAgentsIndex[_serviceAgentsCount] = msg.sender;
-        _serviceAgentsCount++;
+        _serviceAgentsArray.push(msg.sender);
     }
 
-    function getServiceAgentNumber() constant return (uint) {
-        return _serviceCount;
-    }
-
-    function getServiceAgent(uint index) constant return (address) {
-        return _serviceIndex[index];
+    function getServiceAgents() constant returns (address[]) {
+        return _serviceAgentsArray;
     }
 
     function createRetailerAgreement(address retailer) onlyInsurer returns (RetailerAgreement) {
@@ -71,6 +59,10 @@ contract Root {
         return retailerAgreement;
     }
 
+    function getRetailerAgreements() constant returns (RetailerAgreement[]) {
+        return _retailerAgreements;
+    }
+
     function createServiceAgreement(address serviceAgent) onlyInsurer returns (ServiceAgreement) {
         if (!_serviceAgents[serviceAgent])
             throw;
@@ -82,6 +74,10 @@ contract Root {
         return serviceAgreement;
     }
 
+    function getServiceAgreements() constant returns (ServiceAgreement[]) {
+        return _serviceAgreements;
+    }
+
     function createExtendedWarrenty(RetailerAgreement retailerAgreement) onlyRetailer returns (ExtendedWarrenty) {
         if (msg.sender != retailerAgreement.getRetailer())
             throw;
@@ -89,6 +85,10 @@ contract Root {
         ExtendedWarrenty extendedWarrenty = new ExtendedWarrenty(msg.sender, retailerAgreement);
         _extendedWarrenties.push(extendedWarrenty);
         extendedWarrenty.notifyCustomer();
+    }
+
+    function getExtendedWarrenties() constant returns (ExtendedWarrenty[]) {
+        return _extendedWarrenties;
     }
 
     function getHello() constant returns (uint a) {
