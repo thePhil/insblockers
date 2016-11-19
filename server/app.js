@@ -1,7 +1,10 @@
 // requires
 var fs = require ('fs');
+var path = require('path');
 var erisC = require('eris-contracts');
-var express = require('express');
+var Server = require('./server');
+
+
 
 // NOTE. On Windows/OSX do not use localhost. find the
 // url of your chain with:
@@ -12,15 +15,15 @@ var express = require('express');
 var erisdbURL = "http://192.168.99.100:2376/rpc";
 
 // get the abi and deployed data squared away
-var contractData = require('./jobs_output.json');
+var contractData = require('../jobs_output.json');
 
 
 var idisContractAddress = contractData["Root"];
-var idisAbi = JSON.parse(fs.readFileSync("./abi/" + idisContractAddress));
+var idisAbi = JSON.parse(fs.readFileSync(path.join(__dirname, "../abi/" + idisContractAddress)));
 
 // properly instantiate the contract objects manager using the erisdb URL
 // and the account data (which is a temporary hack)
-var accountData = require('./accounts.json');
+var accountData = require('../accounts.json');
 var contractsManager = erisC.newContractManagerDev(erisdbURL, accountData.simplechain_full_000);
 
 // properly instantiate the contract objects using the abi and address
@@ -48,3 +51,6 @@ function changeValue() {
 // run
 getValue(changeValue);
 
+
+// start server
+Server();
