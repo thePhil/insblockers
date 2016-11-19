@@ -5,7 +5,10 @@ import "ServiceAgreement.sol";
 contract Root {
     address _insurer;
     mapping(address => bool) _retailers;
+    address[] _retailersArray;
+
     mapping(address => bool) _serviceAgents;
+    address[] _serviceAgentsArray;
 
     ExtendedWarrenty[] _extendedWarrenties;
     RetailerAgreement[] _retailerAgreements;
@@ -29,32 +32,63 @@ contract Root {
 
     function registerRetailer() {
         _retailers[msg.sender] = true;
+        _retailersArray.push(msg.sender);
+    }
+
+    function getRetailers() constant returns (address[]) {
+        return _retailersArray;
     }
 
     function registerServiceAgent() {
         _serviceAgents[msg.sender] = true;
+        _serviceAgentsArray.push(msg.sender);
     }
 
-    function createRetailerAgreement(RetailerAgreement retailerAgreement) onlyInsurer {
-        address retailer = retailerAgreement.getRetailer();
+    function getServiceAgents() constant returns (address[]) {
+        return _serviceAgentsArray;
+    }
+
+    function createRetailerAgreement(address retailer) onlyInsurer returns (RetailerAgreement) {
         if (!_retailers[retailer])
             throw;
 
+        RetailerAgreement retailerAgreement = new RetailerAgreement(msg.sender, retailer);
         _retailerAgreements.push(retailerAgreement);
         retailerAgreement.notifyRetailer();
+
+        return retailerAgreement;
     }
 
-    function createServiceAgreement(ServiceAgreement serviceAgreement) onlyInsurer {
-        address serviceAgent = serviceAgreement.getServiceAgent();
+    function getRetailerAgreements() constant returns (RetailerAgreement[]) {
+        return _retailerAgreements;
+    }
+
+    function createServiceAgreement(address serviceAgent) onlyInsurer returns (ServiceAgreement) {
         if (!_serviceAgents[serviceAgent])
             throw;
 
+        ServiceAgreement serviceAgreement = new ServiceAgreement(msg.sender, serviceAgent);
         _serviceAgreements.push(serviceAgreement);
         serviceAgreement.notifyServiceAgent();
+
+        return serviceAgreement;
     }
 
-    function createExtendedWarrenty(ExtendedWarrenty extendeWarrenty) onlyRetailer {
-        extendeWarrenty.notifyCustomer();
+    function getServiceAgreements() constant returns (ServiceAgreement[]) {
+        return _serviceAgreements;
+    }
+
+    function createExtendedWarrenty(RetailerAgreement retailerAgreement) onlyRetailer returns (ExtendedWarrenty) {
+        if (msg.sender != retailerAgreement.getRetailer())
+            throw;
+
+        ExtendedWarrenty extendedWarrenty = new ExtendedWarrenty(msg.sender, retailerAgreement);
+        _extendedWarrenties.push(extendedWarrenty);
+        extendedWarrenty.notifyCustomer();
+    }
+
+    function getExtendedWarrenties() constant returns (ExtendedWarrenty[]) {
+        return _extendedWarrenties;
     }
 
     function getHello() constant returns (uint a) {

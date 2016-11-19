@@ -1,5 +1,5 @@
 contract RetailerAgreement {
-    address _insurer = msg.sender;
+    address _insurer;
     address _retailer;
     
     bool _confirmed;
@@ -16,13 +16,18 @@ contract RetailerAgreement {
             throw;
         _
     }
+    }
 
-    function RetailerAgreement(address retailer,
-                               string retailerName,
-                               string retailerAddress,
-                               uint commisionRate,
-                               uint insurenceRate) {
+    function RetailerAgreement(address insurer,
+                               address retailer) {
+        _insurer = insurer;
         _retailer = retailer;
+    }
+
+    function setProperties(string retailerName,
+                           string retailerAddress,
+                           uint commisionRate,
+                           uint insurenceRate) {
         _retailerName = retailerName;
         _retailerAddress = retailerAddress;
         _commisionRate = commisionRate;
@@ -53,6 +58,10 @@ contract RetailerAgreement {
         _confirmed = true;
     }
     
+    function getConfirmed() constant returns(bool) {
+        return _confirmed;
+    }
+
     function notifyRetailer() constant {
         created();
     }
