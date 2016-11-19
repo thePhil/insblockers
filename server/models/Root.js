@@ -29,7 +29,7 @@ function registerInsurer(callback){
 		console.log("I have Registered Insurer");
 		callback();
 	});
-}
+};
 
 function registerRetailer(callback){
 	rootCtr.registerRetailer(function (error, result){
@@ -40,7 +40,7 @@ function registerRetailer(callback){
 		console.log("Registered Retailer");
 		callback();
 	});
-}
+};
 
 function registerServiceAgent(callback){
 	rootCtr.registerServiceAgent(function (error, result){
@@ -51,34 +51,62 @@ function registerServiceAgent(callback){
 		console.log("Registered Service Agent.");
 		callback();
 	});
-}
+};
 
 function retrieveRetailers(callback){
 	var numRetailers = 0;
-	rootCtr.getRetailerNum(function(error,result){
+	rootCtr.getRetailerNumber(function(error,result){
 		if (error) { throw error;}
 
 		numRetailers = result.toNumber();
-	};
-	
-	var retailers[];
-	
-		for (var i = 0; i <  numRetailers; ++i){
-			rootCtr.getRetailer(i,function(error,result){
-				if(error) {throw error;}
-				console.log("Retrieved Retailer: " + result);
-				retailers.push(result);
-			});
-		}
+	});
 
+	var retailers[] = null;
 
-}
+	for (var i = 0; i <  numRetailers; ++i){
+		rootCtr.getRetailer(i,function(error,result){
+			if(error) {throw error;}
+			console.log("Retrieved Retailer: " + result);
+			retailers.push(result);
+		});
+	}
 
+	callback(retailers);
+
+};
+
+function createRetailerAgreement(retailerAdress,callback){
+	rootCtr.createRetailerAgreement(retailerAdress,function(error,result){
+		if (error) {throw error;}
+
+		callback(result);
+	});
+};
+
+function createServiceAgreement(serviceAgentAdr,callback){
+	rootCtr.createServiceAgreement(serviceAgentAdr,function(error,result){
+		if (error) {throw error;}
+
+		callback(result);
+	});
+};
+
+function createExtendedWarrenty(retailerAgreementAdr,callback){
+	rootCtr.createServiceAgreement(retailerAgreementAdr,function(error,result){
+		if (error) {throw error;}
+
+		callback(result);
+	});
+};
 
 module.exports = {
-  registerInsurer:registerInsurer,
-  registerServiceAgent:registerServiceAgent,
-  registerRetailer:registerRetailer,
-  retrieveRetailers:retrieveRetailers,
+	registerInsurer:registerInsurer,
+	registerServiceAgent:registerServiceAgent,
+	registerRetailer:registerRetailer,
+	retrieveRetailers:retrieveRetailers,
+	createRetailerAgreement:createRetailerAgreement,
+	createExtendedWarrenty:createExtendedWarrenty,
+	createServiceAgreement:createServiceAgreement,
+
 
 }
