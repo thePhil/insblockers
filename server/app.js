@@ -1,6 +1,7 @@
 // requires
 var fs = require ('fs');
 var erisC = require('eris-contracts');
+var express = require('express');
 
 // NOTE. On Windows/OSX do not use localhost. find the
 // url of your chain with:
@@ -8,7 +9,7 @@ var erisC = require('eris-contracts');
 // and find the docker machine name you are using (usually default or eris).
 // for example, if the URL returned by docker-machine is tcp://192.168.99.100:2376
 // then your erisdbURL should be http://192.168.99.100:1337/rpc
-var erisdbURL = "http://localhost:1337/rpc";
+var erisdbURL = "http://192.168.99.100:2376/rpc";
 
 // get the abi and deployed data squared away
 var contractData = require('./jobs_output.json');
@@ -29,7 +30,10 @@ var idisContract = contractsManager.newContractFactory(idisAbi).at(idisContractA
 // the `get` function of idi's contract
 function getValue(callback) {
   idisContract.getHello(function(error, result){
-    if (error) { throw error }
+    if (error) {
+      console.log(error, result);
+      throw error
+    }
     console.log("Idi's number is:\t\t\t" + result.toNumber());
     callback();
   });
