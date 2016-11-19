@@ -13,7 +13,7 @@
     "type": "git",
     "url": "git+https://github.com/thePhil/insblockers.git"
   },
-  "insblockersConf":{
+  "insblockersConf": {
     "erisDbUrl": "http://192.168.99.100:2376/rpc"
   },
   "angular-cli": {},
@@ -36,6 +36,8 @@
     "@angular/platform-browser": "^2.1.0",
     "@angular/platform-browser-dynamic": "^2.1.0",
     "@angular/router": "^3.1.0",
+    "@angular/tsc-wrapped": "^0.4.0",
+    "autoprefixer": "^6.5.3",
     "core-js": "^2.4.1",
     "eris-contracts": "^0.15.6",
     "eris-db": "^0.15.6",
