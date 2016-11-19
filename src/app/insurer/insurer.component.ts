@@ -17,6 +17,11 @@ export class InsurerComponent implements OnInit {
     this.insurerService.registerInsurer();
   }
 
+  onSubmit(form){
+    console.log('onSubmit form',form.value);
+    this.insurerService.registerAgreement(form.value);
+  }
+
   ngOnInit() {
   }
 

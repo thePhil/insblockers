@@ -24,6 +24,14 @@ function Server() {
         res.respond(JSON.stringify(true));
       })
     }},
+    {path: '/insurer/registerAgreement', action: function (req, res) {
+
+      console.log('registerAgreement', req.body);
+
+      Root.registerRetailer(function (response) {
+        res.respond(JSON.stringify(response));
+      })
+    }},
   ];
 
   // setup cors

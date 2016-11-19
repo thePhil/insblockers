@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Headers, Http} from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
@@ -6,10 +6,19 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class InsurerService {
 
-  constructor(private http: Http) { }
+  constructor(private http: Http) {
+  }
 
-  registerInsurer():Promise<Boolean>{
+  registerInsurer(): Promise<Boolean> {
     return this.http.get('http://localhost:1111/insurer/register')
+      .toPromise()
+      .then(response => response.json().data as Boolean)
+      .catch(this.handleError);
+
+  }
+
+  registerAgreement(retailer): Promise<Boolean> {
+    return this.http.get('http://localhost:1111/insurer/registerAgreement')
       .toPromise()
       .then(response => response.json().data as Boolean)
       .catch(this.handleError);
