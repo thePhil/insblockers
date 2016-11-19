@@ -26,5 +26,5 @@ cp ${chain_dir}/accounts.json $pwd
 
 
 
-node app.js
+node server/app.js
 #ng serve
