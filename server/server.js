@@ -14,34 +14,43 @@ var Root = require('./models/Root');
 function Server() {
 
   var routes = [
-    {path: '/insurer/register', action: function (req, res) {
+    {
+      path: '/insurer/register', action: function (req, res) {
       Root.registerInsurer(function () {
 
-        res.send(JSON.stringify({message:"You have successfully registered as an insurer please check your mail for more details."}));
+        res.send(JSON.stringify({message: "You have successfully registered as an insurer please check your mail for more details."}));
 
       })
-    }},
-    {path: '/retailer/register', action: function (req, res) {
+    }
+    },
+    {
+      path: '/retailer/register', action: function (req, res) {
       Root.registerRetailer(function () {
         res.send(JSON.stringify(true));
       })
-    }},
-    {path: '/getRetailers', action: function (req, res) {
+    }
+    },
+    {
+      path: '/getRetailers', action: function (req, res) {
 
       Root.retrieveRetailers(function (result) {
-        res.send(JSON.stringify({data:utils.stringFromBytes32(result)}));
+
+        res.send(JSON.stringify({data: result}));
       })
 
 
-    }},
-    {path: '/insurer/registerAgreement', action: function (req, res) {
+    }
+    },
+    {
+      path: '/insurer/registerAgreement', action: function (req, res) {
 
       console.log('registerAgreement', req.body);
 
       Root.registerRetailer(function (response) {
         res.respond(JSON.stringify(response));
       })
-    }},
+    }
+    },
   ];
 
   // setup cors
