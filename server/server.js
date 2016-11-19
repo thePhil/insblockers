@@ -23,7 +23,7 @@ function Server() {
     }},
     {path: '/retailer/register', action: function (req, res) {
       Root.registerRetailer(function () {
-        res.respond(JSON.stringify(true));
+        res.send(JSON.stringify(true));
       })
     }},
     {path: '/getRetailers', action: function (req, res) {
