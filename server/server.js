@@ -7,6 +7,8 @@ var express = require('express');
 var cors = require('cors');
 var app = express();
 
+var utils = require('../Utils');
+
 var Root = require('./models/Root');
 
 function Server() {
@@ -29,7 +31,7 @@ function Server() {
       console.log('registerAgreement', req.body);
 
       Root.retrieveRetailers(function (result) {
-        res.send(JSON.stringify({data:result}));
+        res.send(JSON.stringify({data:utils.stringFromBytes32(result)}));
       })
 
 
