@@ -6,35 +6,35 @@ contract Root {
     address _insurer;
     mapping(address => bool) _retailers;
     mapping(address => bool) _serviceAgents;
-    
+
     ExtendedWarrenty[] _extendedWarrenties;
     RetailerAgreement[] _retailerAgreements;
     ServiceAgreement[] _serviceAgreements;
-    
+
     modifier onlyInsurer() {
         if (msg.sender != _insurer)
             throw;
-        _
+        _;
     }
-    
+
     modifier onlyRetailer() {
         if (!_retailers[msg.sender])
             throw;
-        _
+        _;
     }
-    
+
     function registerInsurer() {
         _insurer = msg.sender;
     }
-    
+
     function registerRetailer() {
         _retailers[msg.sender] = true;
     }
-    
+
     function registerServiceAgent() {
         _serviceAgents[msg.sender] = true;
     }
-    
+
     function createRetailerAgreement(RetailerAgreement retailerAgreement) onlyInsurer {
         address retailer = retailerAgreement.getRetailer();
         if (!_retailers[retailer])
@@ -52,7 +52,7 @@ contract Root {
         _serviceAgreements.push(serviceAgreement);
         serviceAgreement.notifyServiceAgent();
     }
-    
+
     function createExtendedWarrenty(ExtendedWarrenty extendeWarrenty) onlyRetailer {
         extendeWarrenty.notifyCustomer();
     }
