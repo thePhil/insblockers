@@ -2,6 +2,7 @@ import "ServiceAgreement.sol";
 
 contract ExtendedWarrenty {
     address _retailer = msg.sender;
+    address _serviceAgent;
     ServiceAgreement _serviceAgreement;
     string _customerName;
     string _customerEmail;
@@ -15,9 +16,25 @@ contract ExtendedWarrenty {
     string _product;
     uint _premium;
     //*
-    
+
+    bool _defect;
+
     event created();
-    
+    event toBeRepaired();
+    event toBeReplaced();
+
+    modifier onlyRetailer() {
+        if (msg.sender != _retailer)
+            throw;
+        _;
+    }
+
+    modifier onlyServiceAgent() {
+        if (msg.sender != _serviceAgent)
+            throw;
+        _;
+    }
+
     function ExtendedWarrenty(ServiceAgreement serviceAgreement,
                               string customerName,
                               string customerEmail,
@@ -35,11 +52,11 @@ contract ExtendedWarrenty {
         _product = product;
         _premium = premium;
     }
-    
+
     function getRetailer() constant returns(address) {
         return _retailer;
     }
-    
+
     function getServiceAgreement() constant returns(ServiceAgreement) {
         return _serviceAgreement;
     }
@@ -74,6 +91,41 @@ contract ExtendedWarrenty {
 
     function getPremium() constant returns(uint) {
         return _premium;
+    }
+
+    function reportFault() {
+        if (_dateOfExtendedWarrentyEnd < now)
+            throw;
+
+        _defect = true;
+ 
+        // TODO: rules to decide whether repair or replace
+        if (1==1) {
+            startReplaceProduct();
+        } else {
+            startRepairProduct();
+        }
+    }
+
+    function startRepairProduct() {
+        // TODO: find service agent
+        _serviceAgent = _serviceAgent;
+        toBeRepaired();
+    }
+
+    function startReplaceProduct() {
+        toBeReplaced();
+    }
+
+    function reportReportRepaired(int invoice) onlyServiceAgent {
+        _defect = false;
+        // TODO: raise invoice
+    }
+
+    function reportReportRepaired(int invoice, string serialNumber) onlyRetailer {
+        _defect = false;
+        _serialNumber = serialNumber;
+        // TODO: raise invoice
     }
 
     function notifyCustomer() {
