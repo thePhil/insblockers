@@ -5,12 +5,6 @@ var path = require('path');
 var erisdbURL = require('../../package.json').insblockersConf.erisDbUrl;
 var moduleName = module.filename.slice(__filename.lastIndexOf(path.sep)+1, module.filename.length -3);
 
-console.log(moduleName);
-
-
-console.log(ctrAddress);
-
-
 var ctrABI = JSON.parse(fs.readFileSync("../../abi/" + moduleName));
 
 var accountData = require("../../accounts.json");
