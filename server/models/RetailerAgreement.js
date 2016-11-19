@@ -1,5 +1,6 @@
 var fs = require ('fs');
 var erisC = require('eris-contracts');
+var path = require('path');
 
 var erisdbURL = require('../../package.json').insblockersConf.erisDbUrl;
 var moduleName = module.filename.slice(__filename.lastIndexOf(path.sep)+1, module.filename.length -3);
