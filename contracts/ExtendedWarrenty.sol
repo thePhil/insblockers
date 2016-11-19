@@ -89,7 +89,7 @@ contract ExtendedWarrenty {
         return _manufacturer;
     }
 
-    function getSProduct() constant returns(string) {
+    function getProduct() constant returns(string) {
         return _product;
     }
 
