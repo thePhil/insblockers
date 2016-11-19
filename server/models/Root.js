@@ -54,25 +54,13 @@ function registerServiceAgent(callback){
 };
 
 function retrieveRetailers(callback){
-	var numRetailers = 0;
-	rootCtr.getRetailerNumber(function(error,result){
-		if (error) { throw error;}
 
-		numRetailers = result.toNumber();
+	rootCtr.getRetailers(function(error,result){
+		if(error) {throw error;}
+		console.log("Retrieved Retailer: " + result);
+		callback(result);
+
 	});
-
-	var retailers[] = null;
-
-	for (var i = 0; i <  numRetailers; ++i){
-		rootCtr.getRetailer(i,function(error,result){
-			if(error) {throw error;}
-			console.log("Retrieved Retailer: " + result);
-			retailers.push(result);
-		});
-	}
-
-	callback(retailers);
-
 };
 
 function createRetailerAgreement(retailerAdress,callback){
