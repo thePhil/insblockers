@@ -1,17 +1,19 @@
-#!/bin/bash
+#!/bin/sh
+
 pwd=`pwd`
 
-chain_dir=$HOME/.eris/chains/simplechain
-chain_dir_this=$chain_dir/simplechain_full_000
+export chain_dir=$HOME/.eris/chains/simplechain
+export chain_dir_this=$chain_dir/simplechain_full_000
+export eris_home=$HOME/.eris
 
-rm -rf ~/.eris/apps/*
+rm -rf ${eris_home}/apps/*
 
-cp -R contracts/ ~/.eris/apps/
-cp epm.yaml ~/.eris/apps/
+cp -R contracts/ ${eris_home}/apps/
+cp epm.yaml ${eris_home}/apps/
 
-cd ~/.eris/apps/
+cd ${eris_home}/apps/
 
-eris pkgs do --chain simplechain --address $(cat ~/.eris/chains/simplechain/addresses.csv | grep simplechain_full_000 | cut -d ',' -f 1)
+eris pkgs do --chain simplechain --address $(cat ${eris_home}/chains/simplechain/addresses.csv | grep simplechain_full_000 | cut -d ',' -f 1)
 
 rm -r $pwd/abi
 cp jobs_output.json $pwd
@@ -20,8 +22,8 @@ cp -R abi/ $pwd
 cd $pwd
 
 #copy the known accounts into the pwd folder
-cp ~/.eris/chains/simplechain/accounts.json $pwd
+cp ${chain_dir}/accounts.json $pwd
 
 
 
-#ng serve
+ng serve
