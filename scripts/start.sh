@@ -16,4 +16,4 @@ cp -R abi/ $pwd
 
 cd $pwd
 
-ng serve
+
