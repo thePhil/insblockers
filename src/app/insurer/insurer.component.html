@@ -7,7 +7,7 @@
 
 <p>Use the form below to add a new retailer</p>
 
-<form (ngSubmit)="onSubmit(f)" #f="ngForm">
+<form (ngSubmit)="onSubmit(f)" *ngIf="retailers" #f="ngForm">
 
 
   <div *ngFor="let item of retailers;">{{item}}</div>

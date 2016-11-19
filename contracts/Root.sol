@@ -31,8 +31,10 @@ contract Root {
     }
 
     function registerRetailer() {
-        _retailers[msg.sender] = true;
-        _retailersArray.push(msg.sender);
+        if (!_retailers[msg.sender]) {
+            _retailers[msg.sender] = true;
+            _retailersArray.push(msg.sender);
+        }
     }
 
     function getRetailers() constant returns (address[]) {
@@ -40,8 +42,10 @@ contract Root {
     }
 
     function registerServiceAgent() {
-        _serviceAgents[msg.sender] = true;
-        _serviceAgentsArray.push(msg.sender);
+        if (!_serviceAgents[msg.sender]) {
+            _serviceAgents[msg.sender] = true;
+            _serviceAgentsArray.push(msg.sender);
+        }
     }
 
     function getServiceAgents() constant returns (address[]) {

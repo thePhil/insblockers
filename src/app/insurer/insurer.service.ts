@@ -27,11 +27,11 @@ export class InsurerService {
 
   }
 
-  getRetailers(): Promise<String[]> {
+  getRetailers(): Promise<Array<string>> {
 
     return this.http.get(this.nodeApiUrl + '/getRetailers')
       .toPromise()
-      .then(response => response.json().data as String[])
+      .then(response => response.json().data as Array<string>)
       .catch(this.handleError);
 
   }
