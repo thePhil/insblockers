@@ -20,7 +20,7 @@ export class InsurerService {
   }
 
   registerAgreement(retailer): Promise<Boolean> {
-    return this.http.get(this.nodeApiUrl + '/insurer/registerAgreement')
+    return this.http.post(this.nodeApiUrl + '/insurer/registerAgreement?address=' + retailer.retailerName, retailer)
       .toPromise()
       .then(response => response.json().data as Boolean)
       .catch(this.handleError);

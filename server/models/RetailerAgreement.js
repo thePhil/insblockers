@@ -38,7 +38,7 @@ RetailerAgreement.prototype.getRetailerName = function (callback){
 
 		console.log(result);
 		callback(result);
-	});	
+	});
 
 };
 
@@ -52,7 +52,7 @@ RetailerAgreement.prototype.getRetailerAddress = function (callback){
 
 		console.log(result);
 		callback(result);
-	});	
+	});
 
 };
 
@@ -65,7 +65,7 @@ RetailerAgreement.prototype.getCommisionRate = function (callback){
 
 		console.log(result);
 		callback(result);
-	});	
+	});
 
 };
 
@@ -78,7 +78,7 @@ RetailerAgreement.prototype.getInsuranceRate = function (callback){
 
 		console.log(result);
 		callback(result);
-	});	
+	});
 
 };
 
@@ -92,7 +92,7 @@ RetailerAgreement.prototype.getConfirmed = function (callback){
 
 		console.log(result);
 		callback(result);
-	});	
+	});
 
 };
 
@@ -105,7 +105,7 @@ RetailerAgreement.prototype.confirm = function (callback){
 
 		console.log("Retail Agreement confirmed");
 		callback();
-	});	
+	});
 };
 
 
@@ -118,14 +118,14 @@ RetailerAgreement.prototype.notifyRetailer = function (callback){
 
 		console.log("Retailer notified.");
 		callback();
-	});	
+	});
 };
 
 RetailerAgreement.prototype.setProperties = function (retailerName, retailerAdress
 	, commisionRate, insuranceRate, callback){
 		this._factory.setProperties(retailerName, retailerAdress
 			, commisionRate, insuranceRate, function(error, result){
-			
+
 				if(error) {
 					throw error;
 				}
@@ -133,4 +133,6 @@ RetailerAgreement.prototype.setProperties = function (retailerName, retailerAdre
 				console.log("Properties  set: " + result);
 				callback();
 			});
-};	
+};
+
+module.exports = RetailerAgreement;
