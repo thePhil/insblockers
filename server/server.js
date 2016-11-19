@@ -34,10 +34,7 @@ function Server() {
       path: '/getRetailers', action: function (req, res) {
 
       Root.retrieveRetailers(function (result) {
-        result.map(function (item) {
-          console.log(item)
-          return utils.stringFromBytes32(item)
-        });
+
         res.send(JSON.stringify({data: result}));
       })
 
