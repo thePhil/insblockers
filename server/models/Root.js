@@ -13,7 +13,7 @@ var ctrAddress = contractData[moduleName];
 
 console.log(ctrAddress)
 
-var ctrABI = JSON.parse(fs.readFileSync(path.join(__dirname,"../../abi/" + ctrAddress)));
+var ctrABI = JSON.parse(fs.readFileSync(path.join(__dirname,"../../abi/" + moduleName)));
 
 var accountData = require("../../accounts.json");
 var ctrManager = erisC.newContractManagerDev(erisdbURL, accountData.simplechain_full_000);

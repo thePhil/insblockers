@@ -1,7 +1,8 @@
 var fs = require ('fs');
 var erisC = require('eris-contracts');
 
-var erisdbURL = "http://localhost:1337/rpc";
+var erisdbURL = require('../../package.json').insblockersConf.erisDbUrl;
+var moduleName = module.filename.slice(__filename.lastIndexOf(path.sep)+1, module.filename.length -3);
 
 console.log(moduleName);
 
@@ -9,7 +10,7 @@ console.log(moduleName);
 console.log(ctrAddress);
 
 
-var ctrABI = JSON.parse(fs.readFileSync("../../abi/" + ctrAddress));
+var ctrABI = JSON.parse(fs.readFileSync("../../abi/" + moduleName));
 
 var accountData = require("../../accounts.json");
 var ctrManager = erisC.newContractManagerDev(erisdbURL, accountData.simplechain_full_000);
