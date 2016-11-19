@@ -5,7 +5,7 @@ var path = require('path');
 var erisdbURL = require('../../package.json').insblockersConf.erisDbUrl;
 var moduleName = module.filename.slice(__filename.lastIndexOf(path.sep)+1, module.filename.length -3);
 
-var ctrABI = JSON.parse(fs.readFileSync("../../abi/" + moduleName));
+var ctrABI = JSON.parse(fs.readFileSync(path.join(__dirname, "../../abi/" + moduleName)));
 
 var accountData = require("../../accounts.json");
 var ctrManager = erisC.newContractManagerDev(erisdbURL, accountData.simplechain_full_000);
