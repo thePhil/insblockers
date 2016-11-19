@@ -13,3 +13,5 @@ eris pkgs do --chain simplechain --address $(cat ~/.eris/chains/simplechain/addr
 rm -r $pwd/abi
 cp jobs_output.json $pwd
 cp -R abi/ $pwd
+
+ng serve
