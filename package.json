@@ -3,14 +3,6 @@
   "version": "1.0.0",
   "description": "Insurtech Hackathon",
   "main": "index.js",
-  "scripts": {
-	"start": "scripts/start.sh",  
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/thePhil/insblockers.git"
-  },
   "author": "",
   "license": "ISC",
   "bugs": {
@@ -23,7 +15,8 @@
   },
   "angular-cli": {},
   "scripts": {
-    "start": "ng serve",
+    "start": "scripts/start.sh",
+    "serve": "ng serve",
     "lint": "tslint \"src/**/*.ts\"",
     "test": "ng test",
     "pree2e": "webdriver-manager update",
