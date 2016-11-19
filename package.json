@@ -14,7 +14,7 @@
     "url": "git+https://github.com/thePhil/insblockers.git"
   },
   "insblockersConf": {
-    "erisDbUrl": "http://192.168.99.100:2376/rpc"
+    "erisDbUrl": "http://localhost:1337/rpc"
   },
   "angular-cli": {},
   "scripts": {
