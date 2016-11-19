@@ -28,7 +28,10 @@ function Server() {
 
       console.log('registerAgreement', req.body);
 
-    //  todo add get retailers function from phil here
+      Root.retrieveRetailers(function (result) {
+        res.send(JSON.stringify({data:result}));
+      })
+
 
     }},
     {path: '/insurer/registerAgreement', action: function (req, res) {
