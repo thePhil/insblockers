@@ -6,8 +6,8 @@ contract ServiceAgreement {
     
     string _serviceAgentName;
     string _serviceAgentAddress;
-    int8 _repairRate;
-    int8 _serviceLevel;
+    uint _repairRate;
+    uint _serviceLevel;
     
     event created();
     
@@ -20,8 +20,8 @@ contract ServiceAgreement {
     function ServiceAgreement(address serviceAgent,
                               string serviceAgentName,
                               string serviceAgentAddress,
-                              int8 repairRate,
-                              int8 serviceLevel) {
+                              uint repairRate,
+                              uint serviceLevel) {
         _serviceAgent = serviceAgent;
         _serviceAgentName = serviceAgentName;
         _serviceAgentAddress = serviceAgentAddress;
@@ -41,11 +41,11 @@ contract ServiceAgreement {
         return _serviceAgentAddress;
     }
     
-    function getRepairRate() constant returns(int8) {
+    function getRepairRate() constant returns(uint) {
         return _repairRate;
     }
 
-    function getServiceLevel() constant returns(int8) {
+    function getServiceLevel() constant returns(uint) {
         return _serviceLevel;
     }
 

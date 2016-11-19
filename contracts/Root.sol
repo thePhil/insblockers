@@ -1,3 +1,4 @@
+import "ExtendedWarrenty.sol";
 import "RetailerAgreement.sol";
 import "ServiceAgreement.sol";
 
@@ -6,12 +7,18 @@ contract Root {
     mapping(address => bool) _retailers;
     mapping(address => bool) _serviceAgents;
     
+    ExtendedWarrenty[] _extendedWarrenties;
     RetailerAgreement[] _retailerAgreements;
     ServiceAgreement[] _serviceAgreements;
     
-    
     modifier onlyInsurer() {
         if (msg.sender != _insurer)
+            throw;
+        _;
+    }
+    
+    modifier onlyRetailer() {
+        if (!_retailers[msg.sender])
             throw;
         _;
     }
@@ -46,4 +53,7 @@ contract Root {
         serviceAgreement.notifyServiceAgent();
     }
     
+    function createExtendedWarrenty(ExtendedWarrenty extendeWarrenty) onlyRetailer {
+        extendeWarrenty.notifyCustomer();
+    }
 }

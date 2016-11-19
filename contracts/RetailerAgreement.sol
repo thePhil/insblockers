@@ -6,8 +6,8 @@ contract RetailerAgreement {
     
     string _retailerName;
     string _retailerAddress;
-    int8 _commisionRate;
-    int8 _insurenceRate;
+    uint _commisionRate;
+    uint _insurenceRate;
     
     event created();
     
@@ -20,8 +20,8 @@ contract RetailerAgreement {
     function RetailerAgreement(address retailer,
                                string retailerName,
                                string retailerAddress,
-                               int8 commisionRate,
-                               int8 insurenceRate) {
+                               uint commisionRate,
+                               uint insurenceRate) {
         _retailer = retailer;
         _retailerName = retailerName;
         _retailerAddress = retailerAddress;
@@ -41,11 +41,11 @@ contract RetailerAgreement {
         return _retailerAddress;
     }
     
-    function getCommisionRate() constant returns(int8) {
+    function getCommisionRate() constant returns(uint) {
         return _commisionRate;
     }
 
-    function getInsuranceRate() constant returns(int8) {
+    function getInsuranceRate() constant returns(uint) {
         return _insurenceRate;
     }
 
