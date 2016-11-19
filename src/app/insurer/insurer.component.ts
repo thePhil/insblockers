@@ -10,11 +10,7 @@ import {InsurerService} from './insurer.service';
 
 export class InsurerComponent implements OnInit {
 
-  retailers = [
-    '1111',
-    '222',
-    '333'
-  ];
+  retailers;
 
   constructor(private insurerService: InsurerService) {
   }
@@ -29,7 +25,7 @@ export class InsurerComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.retailers = this.insurerService.fetchRetailers().then(result => this.insurerService = result);
+    this.retailers = this.insurerService.fetchRetailers().then(result => this.retailers = result);
   }
 
 }
