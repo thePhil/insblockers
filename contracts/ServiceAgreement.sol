@@ -1,5 +1,5 @@
 contract ServiceAgreement {
-    address _insurer = msg.sender;
+    address _insurer;
     address _serviceAgent;
     
     bool _confirmed;
@@ -14,15 +14,19 @@ contract ServiceAgreement {
     modifier onlyServiceAgent() {
         if (msg.sender != _serviceAgent)
             throw;
-        _
+        _;
     }
 
-    function ServiceAgreement(address serviceAgent,
-                              string serviceAgentName,
-                              string serviceAgentAddress,
-                              uint repairRate,
-                              uint serviceLevel) {
+    function ServiceAgreement(address insurer,
+                              address serviceAgent) {
+        _insurer = insurer;
         _serviceAgent = serviceAgent;
+    }
+
+    function setProperties(string serviceAgentName,
+                           string serviceAgentAddress,
+                           uint repairRate,
+                           uint serviceLevel) {
         _serviceAgentName = serviceAgentName;
         _serviceAgentAddress = serviceAgentAddress;
         _repairRate = repairRate;
@@ -52,7 +56,11 @@ contract ServiceAgreement {
     function confirm() onlyServiceAgent {
         _confirmed = true;
     }
-    
+
+    function getConfirmed() constant returns(bool) {
+        return _confirmed;
+    }
+
     function notifyServiceAgent() constant {
         created();
     }

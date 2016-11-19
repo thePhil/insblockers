@@ -9,6 +9,8 @@ export eris_home=$HOME/.eris
 rm -rf ${eris_home}/apps/*
 
 cp -R contracts/ ${eris_home}/apps/
+# Why does the eris compiler wants another syntax then the original solidity compiler?
+sed -E -i "s/^([[:space:]]*_);/\1/" ${eris_home}/apps/*.sol
 cp epm.yaml ${eris_home}/apps/
 
 cd ${eris_home}/apps/

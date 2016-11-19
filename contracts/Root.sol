@@ -46,17 +46,24 @@ contract Root {
         return retailerAgreement;
     }
 
-    function createServiceAgreement(ServiceAgreement serviceAgreement) onlyInsurer {
-        address serviceAgent = serviceAgreement.getServiceAgent();
+    function createServiceAgreement(address serviceAgent) onlyInsurer returns (ServiceAgreement) {
         if (!_serviceAgents[serviceAgent])
             throw;
 
+        ServiceAgreement serviceAgreement = new ServiceAgreement(msg.sender, serviceAgent);
         _serviceAgreements.push(serviceAgreement);
         serviceAgreement.notifyServiceAgent();
+
+        return serviceAgreement;
     }
 
-    function createExtendedWarrenty(ExtendedWarrenty extendeWarrenty) onlyRetailer {
-        extendeWarrenty.notifyCustomer();
+    function createExtendedWarrenty(RetailerAgreement retailerAgreement) onlyRetailer returns (ExtendedWarrenty) {
+        if (msg.sender != retailerAgreement.getRetailer())
+            throw;
+
+        ExtendedWarrenty extendedWarrenty = new ExtendedWarrenty(msg.sender, retailerAgreement);
+        _extendedWarrenties.push(extendedWarrenty);
+        extendedWarrenty.notifyCustomer();
     }
 
     function getHello() constant returns (uint a) {

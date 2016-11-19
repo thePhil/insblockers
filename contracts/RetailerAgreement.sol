@@ -16,6 +16,7 @@ contract RetailerAgreement {
             throw;
         _
     }
+    }
 
     function RetailerAgreement(address insurer,
                                address retailer) {
