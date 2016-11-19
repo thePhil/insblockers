@@ -26,7 +26,7 @@ function registerInsurer(callback){
 			console.log(error, result);
 			throw error
 		}
-		console.log("Registered Insurer");
+		console.log("I have Registered Insurer");
 		callback();
 	});
 }
@@ -53,9 +53,32 @@ function registerServiceAgent(callback){
 	});
 }
 
+function retrieveRetailers(callback){
+	var numRetailers = 0;
+	rootCtr.getRetailerNum(function(error,result){
+		if (error) { throw error;}
+
+		numRetailers = result.toNumber();
+	};
+	
+	var retailers[];
+	
+		for (var i = 0; i <  numRetailers; ++i){
+			rootCtr.getRetailer(i,function(error,result){
+				if(error) {throw error;}
+				console.log("Retrieved Retailer: " + result);
+				retailers.push(result);
+			});
+		}
+
+
+}
+
+
 module.exports = {
   registerInsurer:registerInsurer,
   registerServiceAgent:registerServiceAgent,
   registerRetailer:registerRetailer,
+  retrieveRetailers:retrieveRetailers,
 
 }

@@ -15,7 +15,6 @@ contract RetailerAgreement {
         if (msg.sender != _retailer)
             throw;
         _
-        ;
     }
 
     function RetailerAgreement(address insurer,
