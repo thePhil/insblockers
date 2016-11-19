@@ -14,13 +14,13 @@ contract Root {
     modifier onlyInsurer() {
         if (msg.sender != _insurer)
             throw;
-        _;
+        _
     }
 
     modifier onlyRetailer() {
         if (!_retailers[msg.sender])
             throw;
-        _;
+        _
     }
 
     function registerInsurer() {
@@ -57,8 +57,8 @@ contract Root {
         extendeWarrenty.notifyCustomer();
     }
 
-    function getHello() constant returns (uint) {
-	    return 5;
+    function getHello() constant returns (uint a) {
+	    a = 5;
     }
 
 }

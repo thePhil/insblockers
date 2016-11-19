@@ -16,9 +16,13 @@ cp -R abi/ $pwd
 
 cd $pwd
 
+<<<<<<< HEAD
 #copy the known accounts into the pwd folder
 cp ~/.eris/chains/simplechain/accounts.json $pwd
 
 
 
-#ng serve
+ng serve
+=======
+
+>>>>>>> 34021dc02021c083774b0fc0602c3ca78b01a353

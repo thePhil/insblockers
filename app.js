@@ -14,7 +14,7 @@ var erisdbURL = "http://localhost:1337/rpc";
 var contractData = require('./jobs_output.json');
 
 
-var idisContractAddress = contractData["root"];
+var idisContractAddress = contractData["Root"];
 var idisAbi = JSON.parse(fs.readFileSync("./abi/" + idisContractAddress));
 
 // properly instantiate the contract objects manager using the erisdb URL
