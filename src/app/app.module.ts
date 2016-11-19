@@ -12,6 +12,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { InsurerComponent } from './insurer/insurer.component';
 import { CustomerComponent } from './customer/customer.component';
 import { ServiceAgentComponent } from './service-agent/service-agent.component';
+import {InsurerService} from "./insurer/insurer.service";
 
 @NgModule({
   declarations: [
@@ -29,7 +30,9 @@ import { ServiceAgentComponent } from './service-agent/service-agent.component';
     MaterialModule.forRoot(),
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    InsurerService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -6,19 +6,20 @@ module.exports = Server;
 
 
 var express = require('express');
+var cors = require('cors');
 var app = express();
 
 function Server() {
 
   var Insurer = {
     register:function (request, res) {
-      console.log('register insurer');
-      res.send('registered insurer');
+      respond(true);
+      res.send(respond(true));
     }
   }
   var Retailer = {
     register:function (request, res) {
-      console.log('registered retailer');
+      respond(true);
       res.send('registered retailer');
     }
   };
@@ -27,6 +28,10 @@ function Server() {
     {path: '/insurer/register', action: Insurer.register},
     {path: '/retailer/register', action: Insurer.register},
   ]
+
+
+  // setup cors
+  app.use(cors());
 
   routes.forEach(function (item, index) {
     app.get(item.path, item.action);
@@ -38,6 +43,8 @@ function Server() {
 }
 
 
-
+function respond(value){
+  return JSON.stringify(value  )
+}
 
 
