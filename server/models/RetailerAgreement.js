@@ -82,6 +82,20 @@ RetailerAgreement.prototype.getInsuranceRate = function (callback){
 
 };
 
+
+RetailerAgreement.prototype.getConfirmed = function (callback){
+	this._factory.getConfirmed(function (error, result){
+		if(error) {
+			console.log(error, result);
+			throw error;
+		}
+
+		console.log(result);
+		callback(result);
+	});	
+
+};
+
 RetailerAgreement.prototype.confirm = function (callback){
 	this._factory.confirm(function (error){
 		if(error) {
