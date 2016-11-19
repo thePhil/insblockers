@@ -5,7 +5,12 @@ import "ServiceAgreement.sol";
 contract Root {
     address _insurer;
     mapping(address => bool) _retailers;
+    mapping(uint => address) _retailersIndex;
+    uint _retailersCount;
+
     mapping(address => bool) _serviceAgents;
+    mapping(uint => address) _serviceAgentsIndex;
+    uint _serviceAgentsCount;
 
     ExtendedWarrenty[] _extendedWarrenties;
     RetailerAgreement[] _retailerAgreements;
@@ -29,10 +34,30 @@ contract Root {
 
     function registerRetailer() {
         _retailers[msg.sender] = true;
+        _retailersIndex[_retailersCount] = msg.sender;
+        _retailersCount++;
+    }
+
+    function getRetailerNumber() constant return (uint) {
+        return _retailersCount;
+    }
+
+    function getRetailer(uint index) constant return (address) {
+        return _retailersIndex[index];
     }
 
     function registerServiceAgent() {
         _serviceAgents[msg.sender] = true;
+        _serviceAgentsIndex[_serviceAgentsCount] = msg.sender;
+        _serviceAgentsCount++;
+    }
+
+    function getServiceAgentNumber() constant return (uint) {
+        return _serviceCount;
+    }
+
+    function getServiceAgent(uint index) constant return (address) {
+        return _serviceIndex[index];
     }
 
     function createRetailerAgreement(address retailer) onlyInsurer returns (RetailerAgreement) {
