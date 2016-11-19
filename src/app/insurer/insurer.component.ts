@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {InsurerService} from "./insurer.service";
+import {InsurerService} from './insurer.service';
 
 @Component({
   selector: 'app-insurer',
@@ -10,6 +10,12 @@ import {InsurerService} from "./insurer.service";
 
 export class InsurerComponent implements OnInit {
 
+  retailers = [
+    '1111',
+    '222',
+    '333'
+  ];
+
   constructor(private insurerService: InsurerService) {
   }
 
@@ -17,12 +23,13 @@ export class InsurerComponent implements OnInit {
     this.insurerService.registerInsurer();
   }
 
-  onSubmit(form){
-    console.log('onSubmit form',form.value);
+  onSubmit(form) {
+    console.log('onSubmit form', form.value);
     this.insurerService.registerAgreement(form.value);
   }
 
   ngOnInit() {
+    this.retailers = this.insurerService.fetchRetailers().then(result => this.insurerService = result);
   }
 
 }

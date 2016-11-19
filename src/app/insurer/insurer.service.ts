@@ -6,11 +6,13 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class InsurerService {
 
+  nodeApiUrl = 'http://localhost:1111';
+
   constructor(private http: Http) {
   }
 
   registerInsurer(): Promise<Boolean> {
-    return this.http.get('http://localhost:1111/insurer/register')
+    return this.http.get(this.nodeApiUrl + '/insurer/register')
       .toPromise()
       .then(response => response.json().data as Boolean)
       .catch(this.handleError);
@@ -18,9 +20,18 @@ export class InsurerService {
   }
 
   registerAgreement(retailer): Promise<Boolean> {
-    return this.http.get('http://localhost:1111/insurer/registerAgreement')
+    return this.http.get(this.nodeApiUrl + '/insurer/registerAgreement')
       .toPromise()
       .then(response => response.json().data as Boolean)
+      .catch(this.handleError);
+
+  }
+
+  fetchRetailers(): Promise<String[]> {
+
+    return this.http.get(this.nodeApiUrl + '/fetchRetailers')
+      .toPromise()
+      .then(response => response.json().data as Array)
       .catch(this.handleError);
 
   }
