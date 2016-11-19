@@ -53,7 +53,7 @@ contract ServiceAgreement {
         _confirmed = true;
     }
     
-    function notifyServiceAgent() {
+    function notifyServiceAgent() constant {
         created();
     }
 }

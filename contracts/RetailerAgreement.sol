@@ -53,7 +53,7 @@ contract RetailerAgreement {
         _confirmed = true;
     }
     
-    function notifyRetailer() {
+    function notifyRetailer() constant {
         created();
     }
 }

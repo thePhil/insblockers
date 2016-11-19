@@ -128,7 +128,7 @@ contract ExtendedWarrenty {
         // TODO: raise invoice
     }
 
-    function notifyCustomer() {
+    function notifyCustomer() constant {
         created();
     }
 }
