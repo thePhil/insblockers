@@ -1,6 +1,9 @@
 #!/bin/bash
 pwd=`pwd`
 
+chain_dir=$HOME/.eris/chains/simplechain
+chain_dir_this=$chain_dir/simplechain_full_000
+
 rm -rf ~/.eris/apps/*
 
 cp -R contracts/ ~/.eris/apps/
