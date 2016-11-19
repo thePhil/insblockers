@@ -27,7 +27,7 @@ export class InsurerService {
 
   }
 
-  fetchRetailers(): Promise<String[]> {
+  fetchRetailers(): Promise<Array> {
 
     return this.http.get(this.nodeApiUrl + '/fetchRetailers')
       .toPromise()
