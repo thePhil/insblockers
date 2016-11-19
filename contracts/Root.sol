@@ -56,4 +56,9 @@ contract Root {
     function createExtendedWarrenty(ExtendedWarrenty extendeWarrenty) onlyRetailer {
         extendeWarrenty.notifyCustomer();
     }
+
+    function getHello() constant returns (uint) {
+	    return 5;
+    }
+
 }

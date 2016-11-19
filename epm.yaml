@@ -1,11 +1,5 @@
 jobs:
 
-- name: root
-  job:
-    deploy:
-      contract: root.sol
-      wait: true
-
 - name: Root 
   job:
     deploy:
