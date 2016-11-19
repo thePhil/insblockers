@@ -3,30 +3,39 @@
  */
 module.exports = Server;
 
-
-
 var express = require('express');
+var cors = require('cors');
 var app = express();
+
+var Root = require('./models/Root');
 
 function Server() {
 
-  var Insurer = {
-    register:function (request, res) {
-      console.log('register insurer');
-      res.send('registered insurer');
-    }
-  }
-  var Retailer = {
-    register:function (request, res) {
-      console.log('registered retailer');
-      res.send('registered retailer');
-    }
-  };
-
   var routes = [
-    {path: '/insurer/register', action: Insurer.register},
-    {path: '/retailer/register', action: Insurer.register},
-  ]
+    {path: '/insurer/register', action: function (req, res) {
+      Root.registerInsurer(function () {
+
+        res.respond(JSON.stringify(true));
+
+      })
+    }},
+    {path: '/retailer/register', action: function (req, res) {
+      Root.registerRetailer(function () {
+        res.respond(JSON.stringify(true));
+      })
+    }},
+    {path: '/insurer/registerAgreement', action: function (req, res) {
+
+      console.log('registerAgreement', req.body);
+
+      Root.registerRetailer(function (response) {
+        res.respond(JSON.stringify(response));
+      })
+    }},
+  ];
+
+  // setup cors
+  app.use(cors());
 
   routes.forEach(function (item, index) {
     app.get(item.path, item.action);
@@ -36,8 +45,4 @@ function Server() {
     console.log('Example app listening on port 3000!')
   });
 }
-
-
-
-
 

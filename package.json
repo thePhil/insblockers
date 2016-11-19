@@ -13,6 +13,9 @@
     "type": "git",
     "url": "git+https://github.com/thePhil/insblockers.git"
   },
+  "insblockersConf":{
+    "erisDbUrl": "http://192.168.99.100:2376/rpc"
+  },
   "angular-cli": {},
   "scripts": {
     "start": "scripts/start.sh",
@@ -47,6 +50,7 @@
     "@types/node": "^6.0.42",
     "angular-cli": "1.0.0-beta.20-4",
     "codelyzer": "~1.0.0-beta.3",
+    "cors": "^2.8.1",
     "express": "^4.14.0",
     "jasmine-core": "2.4.1",
     "jasmine-spec-reporter": "2.5.0",

@@ -1,3 +1,22 @@
+<div class="container">
 <p>
-  insurer works!
+  Welcome to the Insurer control panel.
 </p>
+
+<button (click)="register()">Click to Register as an insurer</button>
+
+<p>Use the form below to add a new retailer</p>
+
+<form (ngSubmit)="onSubmit(f)" #f="ngForm">
+
+  <md-input ngModel name="retailerName" placeholder="Retailer Name SHOULD BE LIST FROM CHAIN"></md-input>
+  <md-input ngModel name="primaryContact" placeholder="Retailer primary contract"></md-input>
+  <md-input ngModel name="duration" placeholder="Duration of the agreement"></md-input>
+  <md-input ngModel name="commision" placeholder="Commision Rate"></md-input>
+  <md-input ngModel name="terms" placeholder="Terms of payment"></md-input>
+  <md-input ngModel name="rates" placeholder="Extended warranty insurance rates"></md-input>
+
+  <br>
+  <button type="submit">Add Agreement</button>
+</form>
+</div>
