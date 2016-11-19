@@ -26,13 +26,13 @@ contract ExtendedWarrenty {
     modifier onlyRetailer() {
         if (msg.sender != _retailer)
             throw;
-        _;
+        _
     }
 
     modifier onlyServiceAgent() {
         if (msg.sender != _serviceAgent)
             throw;
-        _;
+        _
     }
 
     function ExtendedWarrenty(ServiceAgreement serviceAgreement,

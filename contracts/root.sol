@@ -2,7 +2,7 @@ contract root{
 
 
 
-	function getHello() constant returns (uuint a){
+	function getHello() constant returns (uint a){
 		return 3;
 	}
 }

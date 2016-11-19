@@ -14,13 +14,13 @@ contract Root {
     modifier onlyInsurer() {
         if (msg.sender != _insurer)
             throw;
-        _;
+        _
     }
     
     modifier onlyRetailer() {
         if (!_retailers[msg.sender])
             throw;
-        _;
+        _
     }
     
     function registerInsurer() {
