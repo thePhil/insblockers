@@ -4,6 +4,7 @@
   "description": "Insurtech Hackathon",
   "main": "index.js",
   "scripts": {
+	"start": "scripts/start.sh",  
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
