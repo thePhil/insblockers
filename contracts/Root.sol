@@ -15,12 +15,14 @@ contract Root {
         if (msg.sender != _insurer)
             throw;
         _
+        ;
     }
 
     modifier onlyRetailer() {
         if (!_retailers[msg.sender])
             throw;
         _
+        ;
     }
 
     function registerInsurer() {
@@ -35,13 +37,15 @@ contract Root {
         _serviceAgents[msg.sender] = true;
     }
 
-    function createRetailerAgreement(RetailerAgreement retailerAgreement) onlyInsurer {
-        address retailer = retailerAgreement.getRetailer();
+    function createRetailerAgreement(address retailer) onlyInsurer returns (RetailerAgreement) {
         if (!_retailers[retailer])
             throw;
 
+        RetailerAgreement retailerAgreement = new RetailerAgreement(msg.sender, retailer);
         _retailerAgreements.push(retailerAgreement);
         retailerAgreement.notifyRetailer();
+
+        return retailerAgreement;
     }
 
     function createServiceAgreement(ServiceAgreement serviceAgreement) onlyInsurer {
