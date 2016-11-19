@@ -13,6 +13,7 @@ import { InsurerComponent } from './insurer/insurer.component';
 import { CustomerComponent } from './customer/customer.component';
 import { ServiceAgentComponent } from './service-agent/service-agent.component';
 import {InsurerService} from "./insurer/insurer.service";
+import {RetailerService} from "./retailer/retailer.service";
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import {InsurerService} from "./insurer/insurer.service";
     AppRoutingModule
   ],
   providers: [
-    InsurerService
+    InsurerService,
+    RetailerService
   ],
   bootstrap: [AppComponent]
 })

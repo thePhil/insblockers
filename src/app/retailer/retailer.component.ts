@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {RetailerService} from "./retailer.service";
 
 @Component({
   // moduleId: module.id,
@@ -8,7 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RetailerComponent implements OnInit {
 
-  constructor() { }
+  constructor(private retailerService: RetailerService) {
+  }
+
+  register(): void {
+    this.retailerService.registerRetailer();
+  }
 
   ngOnInit() {
   }
