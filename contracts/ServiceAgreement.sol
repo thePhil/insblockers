@@ -14,7 +14,7 @@ contract ServiceAgreement {
     modifier onlyServiceAgent() {
         if (msg.sender != _serviceAgent)
             throw;
-        _;
+        _
     }
 
     function ServiceAgreement(address serviceAgent,

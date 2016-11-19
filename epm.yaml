@@ -19,8 +19,15 @@ jobs:
       contract: RetailerAgreement.sol
       wait: true
 
-- name: ServiceAgreeement
+- name: ServiceAgreement
   job:
     deploy:
-      contract: ServiceAgreeement.sol
+      contract: ServiceAgreement.sol
       wait: true
+
+- name: ExtendedWarrenty
+  job:
+    deploy:
+      contract: ExtendedWarrenty.sol
+      wait: true
+

@@ -14,4 +14,6 @@ rm -r $pwd/abi
 cp jobs_output.json $pwd
 cp -R abi/ $pwd
 
+cd $pwd
+
 ng serve
