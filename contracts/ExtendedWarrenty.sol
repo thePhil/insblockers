@@ -1,9 +1,9 @@
-import "ServiceAgreement.sol";
+import "RetailerAgreement.sol";
 
 contract ExtendedWarrenty {
     address _retailer = msg.sender;
+    RetailerAgreement _retailerAgreement;
     address _serviceAgent;
-    ServiceAgreement _serviceAgreement;
     string _customerName;
     string _customerEmail;
     string _serialNumber;
@@ -26,24 +26,28 @@ contract ExtendedWarrenty {
     modifier onlyRetailer() {
         if (msg.sender != _retailer)
             throw;
-        _
+        _;
     }
 
     modifier onlyServiceAgent() {
         if (msg.sender != _serviceAgent)
             throw;
-        _
+        _;
     }
 
-    function ExtendedWarrenty(ServiceAgreement serviceAgreement,
-                              string customerName,
-                              string customerEmail,
-                              uint dateOfSale,
-                              uint dateOfExtendedWarrentyEnd,
-                              string manufacturer,
-                              string product,
-                              uint premium) {
-        _serviceAgreement = serviceAgreement;
+    function ExtendedWarrenty(address retailer,
+                              RetailerAgreement retailerAgreement) {
+        _retailer = retailer;
+        _retailerAgreement = retailerAgreement;
+    }
+
+    function setProperties(string customerName,
+                           string customerEmail,
+                           uint dateOfSale,
+                           uint dateOfExtendedWarrentyEnd,
+                           string manufacturer,
+                           string product,
+                           uint premium) {
         _customerName = customerName;
         _customerEmail = customerEmail;
         _dateOfSale = dateOfSale;
@@ -57,8 +61,8 @@ contract ExtendedWarrenty {
         return _retailer;
     }
 
-    function getServiceAgreement() constant returns(ServiceAgreement) {
-        return _serviceAgreement;
+    function getRetailerAgreement() constant returns(RetailerAgreement) {
+        return _retailerAgreement;
     }
 
     function getCustomerName() constant returns(string) {
