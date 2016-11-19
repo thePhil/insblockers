@@ -10,6 +10,7 @@ var app = express();
 var utils = require('../Utils');
 
 var Root = require('./models/Root');
+var RetailerAgreement = require('./models/RetailerAgreement')
 
 function Server() {
 
@@ -51,6 +52,21 @@ function Server() {
       })
     }
     },
+    {
+      path:'/insurer/registerAgreement',
+      action:function (req, res) {
+
+        Root.createRetailerAgreement(req.params.address, function (result) {
+
+            var agree = new RetailerAgreement(result);
+            agree.setProperties(req.body.retailerName, req.params.address, req.body.commision, req.body.rates, function (resulr) {
+              res.send(JSON.stringify({data:true}))
+            });
+
+            res.send()
+        })
+      }
+    }
   ];
 
   // setup cors
