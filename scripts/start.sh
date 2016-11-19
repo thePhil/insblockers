@@ -15,7 +15,7 @@ cd ${eris_home}/apps/
 
 eris pkgs do --chain simplechain --address $(cat ${eris_home}/chains/simplechain/addresses.csv | grep simplechain_full_000 | cut -d ',' -f 1)
 
-rm -r $pwd/abi
+rm -rf ${pwd}/abi
 cp jobs_output.json $pwd
 cp -R abi $pwd
 
@@ -26,5 +26,5 @@ cp ${chain_dir}/accounts.json $pwd
 
 
 
-node app.js
+node server/app.js
 #ng serve
