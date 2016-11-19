@@ -28,8 +28,6 @@ function Server() {
     }},
     {path: '/getRetailers', action: function (req, res) {
 
-      console.log('registerAgreement', req.body);
-
       Root.retrieveRetailers(function (result) {
         res.send(JSON.stringify({data:utils.stringFromBytes32(result)}));
       })

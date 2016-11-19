@@ -1,4 +1,4 @@
-module.export = {
+module.exports = {
   stringToBytes32: Utils.stringToBytes32,
   stringFromBytes32: Utils.stringFromBytes32,
 
@@ -19,16 +19,5 @@ Utils.stringToBytes32 = function(string) {
     return result;
 };
 
-Utils.stringFromBytes32 = function(bytes32) {
-
-    var skip = 0;
-    for (; skip < bytes32.length; skip += 2) {
-        if (bytes32.charAt(skip) != '0'
-            || bytes32.charAt(skip + 1) != '0') {
-            break;
-        }
-    }
-
-    return new Buffer(bytes32.substring(skip, bytes32.length), 'hex').toString();
-};
+Utils.stringFromBytes32 =
 
